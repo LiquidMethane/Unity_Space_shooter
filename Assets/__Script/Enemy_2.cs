@@ -8,17 +8,17 @@ public class Enemy_2 : Enemy
     public float radius = 1f;
     public float rotationSpeed = 5f;
 
-    float w = 0f;
-    float random;
-    bool counterClockWise;
+    float _w = 0f; //omega
+    float _random;
+    bool _counterClockWise;
 
     public override void Move()
     {
         base.Move();
         Vector3 tempPos = Vector3.zero;
-        w += Time.deltaTime * rotationSpeed;
-        tempPos.x = (counterClockWise) ? radius * Mathf.Sin(w) : -radius * Mathf.Sin(w);
-        tempPos.y = radius * Mathf.Cos(w);
+        _w += Time.deltaTime * rotationSpeed;
+        tempPos.x = (_counterClockWise) ? radius * Mathf.Sin(_w) : -radius * Mathf.Sin(_w);
+        tempPos.y = radius * Mathf.Cos(_w);
 
         Pos += tempPos;
         if (bndCheck != null && bndCheck.offDown)
@@ -31,9 +31,9 @@ public class Enemy_2 : Enemy
 
     void Start()
     {
-        random = Random.value;
-        counterClockWise = (random > 0.5f) ? true : false;
-        w = 0f;
+        _random = Random.value;
+        _counterClockWise = (_random > 0.5f) ? true : false;
+        _w = 0f;
     }
 
 

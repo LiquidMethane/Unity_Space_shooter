@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Enemy_1 : Enemy
 {
-    float random;
-    bool touchBound, touchLeftBound, touchRightBound;
+    float _random;
+    bool _touchBound, _touchLeftBound, _touchRightBound;
     public override void Move()
     {
         base.Move();
         Vector3 tempPos = Vector3.zero;
 
-        if (!touchBound)
-            tempPos.x += (random < 0.5f) ? speed * Time.deltaTime : -speed * Time.deltaTime;
+        if (!_touchBound)
+            tempPos.x += (_random < 0.5f) ? speed * Time.deltaTime : -speed * Time.deltaTime;
         else
         {
-            if (touchLeftBound)
+            if (_touchLeftBound)
 
                 tempPos.x += speed * Time.deltaTime;
-            if (touchRightBound)
+            if (_touchRightBound)
 
                 tempPos.x -= speed * Time.deltaTime;
         }
@@ -40,7 +40,7 @@ public class Enemy_1 : Enemy
 
     void Start()
     {
-        random = Random.value;
+        _random = Random.value;
 
 
     }
@@ -49,16 +49,16 @@ public class Enemy_1 : Enemy
     void Update()
     {
         if (bndCheck.offLeft || bndCheck.offRight)
-            touchBound = true;
+            _touchBound = true;
         if (bndCheck.offLeft)
         {
-            touchLeftBound = true;
-            touchRightBound = false;
+            _touchLeftBound = true;
+            _touchRightBound = false;
         }
         else if (bndCheck.offRight)
         {
-            touchLeftBound = false;
-            touchRightBound = true;
+            _touchLeftBound = false;
+            _touchRightBound = true;
         }
         Move();
     }
