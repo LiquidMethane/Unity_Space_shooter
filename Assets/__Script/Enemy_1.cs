@@ -24,15 +24,8 @@ public class Enemy_1 : Enemy
         }
 
 
-
-
         Pos += tempPos;
 
-
-        if (bndCheck != null && bndCheck.offDown)
-        {
-            Destroy(gameObject);
-        }
     }
 
 

@@ -21,12 +21,6 @@ public class Enemy_2 : Enemy
         tempPos.y = radius * Mathf.Cos(_w);
 
         Pos += tempPos;
-        if (bndCheck != null && bndCheck.offDown)
-        {
-
-            Destroy(gameObject);
-
-        }
     }
 
     void Start()
