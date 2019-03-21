@@ -6,53 +6,26 @@ public class Enemy_1 : Enemy
 {
     float _random;
     bool _touchBound, _touchLeftBound, _touchRightBound;
-    public override void Move()
+
+    public override void Move() //Enemy_1 moves in a diagonal line randomly to the left or to the right
     {
-        base.Move();
+        base.Move(); //moves downward
         Vector3 tempPos = Vector3.zero;
 
-        if (!_touchBound)
-            tempPos.x += (_random < 0.5f) ? speed * Time.deltaTime : -speed * Time.deltaTime;
-        else
-        {
-            if (_touchLeftBound)
-
-                tempPos.x += speed * Time.deltaTime;
-            if (_touchRightBound)
-
-                tempPos.x -= speed * Time.deltaTime;
-        }
-
-
+        tempPos.x += (_random < 0.5f) ? speed * Time.deltaTime : -speed * Time.deltaTime; //moves leftward or rightward randomly
+  
         Pos += tempPos;
 
     }
-
-
-
-
+    
     void Start()
     {
-        _random = Random.value;
-
-
+        _random = Random.value; //determine the random value upon the creation of Enemy
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (bndCheck.offLeft || bndCheck.offRight)
-            _touchBound = true;
-        if (bndCheck.offLeft)
-        {
-            _touchLeftBound = true;
-            _touchRightBound = false;
-        }
-        else if (bndCheck.offRight)
-        {
-            _touchLeftBound = false;
-            _touchRightBound = true;
-        }
         Move();
     }
 }

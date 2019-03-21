@@ -29,9 +29,10 @@ public class Enemy : MonoBehaviour
     public virtual void Move()
     {
         Vector3 tempPos = Pos;
-        tempPos.y -= speed * Time.deltaTime;
+        tempPos.y -= speed * Time.deltaTime; //moves enemy downward 
         Pos = tempPos;
-        if (bndCheck != null && bndCheck.offDown)
+
+        if (bndCheck != null && (bndCheck.offDown || bndCheck.offLeft || bndCheck.offRight)) //destroys enemy object if out of bounds
         {
             Destroy(gameObject);
         }

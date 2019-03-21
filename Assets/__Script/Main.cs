@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
-    static public Main S;
+    static public Main Singleton;
+
     [Header("Set in Inspector")]
     public GameObject[] prefabEnemies;
     public float enemySpawnPerSecond = 0.5f;
@@ -16,10 +17,11 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        S = this;
+        Singleton = this;
         _bndCheck = GetComponent<BoundsCheck>();
-        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond); //invoke SpawnEnemy method every 2 sec
     }
+
     public void SpawnEnemy()
     {
         int ndx = Random.Range(0,prefabEnemies.Length);
@@ -34,7 +36,17 @@ public class Main : MonoBehaviour
         pos.x = Random.Range(xMin, xMax);
         pos.y = _bndCheck.camHeight + enemyPadding;
         go.transform.position = pos;
-        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond); //invoke SpawnEnemy method again every 2 sec
+    }
+
+    public void DelayedRestart(float delay)
+    {
+        Invoke("Restart", delay); //invoke the restart method in delay sec
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("_Scene_0"); //reload _Scene_0 to restart the game
     }
 
 }

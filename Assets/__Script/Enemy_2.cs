@@ -8,26 +8,26 @@ public class Enemy_2 : Enemy
     public float radius = 1f;
     public float rotationSpeed = 5f;
 
-    float _w = 0f; //omega
+    float _angularFrequency = 0f; //omega
     float _random;
     bool _counterClockWise;
 
-    public override void Move()
+    public override void Move() //Enemy_2 moves in a spiral route either clockwise or counterclockwise
     {
-        base.Move();
+        base.Move(); //moves downwards
         Vector3 tempPos = Vector3.zero;
-        _w += Time.deltaTime * rotationSpeed;
-        tempPos.x = (_counterClockWise) ? radius * Mathf.Sin(_w) : -radius * Mathf.Sin(_w);
-        tempPos.y = radius * Mathf.Cos(_w);
+        _angularFrequency += Time.deltaTime * rotationSpeed;
+        tempPos.x = (_counterClockWise) ? radius * Mathf.Sin(_angularFrequency) : -radius * Mathf.Sin(_angularFrequency); //formula: position(t) = A * sin(wt), where w is angular frequency
+        tempPos.y = radius * Mathf.Cos(_angularFrequency);
 
         Pos += tempPos;
     }
 
     void Start()
     {
-        _random = Random.value;
+        _random = Random.value; //determines a random value for direction upon the creation of Enemy
         _counterClockWise = (_random > 0.5f) ? true : false;
-        _w = 0f;
+        _angularFrequency = 0f;
     }
 
 
