@@ -57,7 +57,7 @@ public class BoundsCheck : MonoBehaviour
             isOnScreen = true;
             offRight = offLeft = offUp = offDown = false;
         }
-        transform.position = pos;
+        
     }
 
     private void OnDrawGizmos() //draw the bounds in the Scene pane
