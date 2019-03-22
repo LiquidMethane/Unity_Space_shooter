@@ -18,8 +18,9 @@ public class Enemy_1 : Enemy
 
     }
     
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         _random = Random.value; //determine the random value upon the creation of Enemy
     }
 

@@ -23,8 +23,9 @@ public class Enemy_2 : Enemy
         Pos += tempPos;
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         _random = Random.value; //determines a random value for direction upon the creation of Enemy
         _counterClockWise = (_random > 0.5f) ? true : false;
         _angularFrequency = 0f;
