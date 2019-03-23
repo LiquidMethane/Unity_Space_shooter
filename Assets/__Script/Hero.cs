@@ -25,7 +25,6 @@ public class Hero : MonoBehaviour
 
     public WeaponFireDelegate fireDelegate;
 
-
     private void Awake() // set the ship singleton
     {
         if (Ship == null)
@@ -88,7 +87,8 @@ public class Hero : MonoBehaviour
 
             if (value < 0) //if shield is gone destroy Hero
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
+                ScoreManager.Singleton.SaveHighScore();
                 Main.Singleton.DelayedRestart(gameRestartDelay);
             }
         }

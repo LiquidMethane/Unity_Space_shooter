@@ -101,7 +101,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T)) //press T to toggle between blaster and simple weapon
         {
             if (type == WeaponType.blaster)
                 SetType(WeaponType.simple);
