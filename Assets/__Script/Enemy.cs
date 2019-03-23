@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [Header("Set in Inspector:Enemy")]
     public float speed = 10f;
     public float health = 1f;
+    public int score = 1;
 
     protected BoundsCheck bndCheck;
     
@@ -16,13 +17,20 @@ public class Enemy : MonoBehaviour
         bndCheck = GetComponent<BoundsCheck>();
     }
 
-    protected virtual void Start()
+    protected virtual void Start() //determine health and score for every enemy upon spawning
     {
         float _rand = Random.value;
         if (_rand < 0.5f)
+        {
             health = 1f;
+            score = 1;
+        }
+            
         else
+        { 
             health = 3f;
+            score = 3;
+        }
     }
 
     public Vector3 Pos
@@ -63,9 +71,11 @@ public class Enemy : MonoBehaviour
                 }
 
                 health -= Main.GetWeaponDefinition(p.type).damageOnHit;//reduce enemy's health by the amount acquired from WEAP_DICT
-                if (health <= 0)
+                if (health == 0)
                 {
                     Destroy(gameObject);
+                    ScoreManager.Singleton.Score += score;
+                    ScoreManager.Singleton.DisplayScore();
                 }
                 Destroy(otherGO);
                 break;
