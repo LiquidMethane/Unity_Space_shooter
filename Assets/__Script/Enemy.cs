@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Set in Inspector:Enemy")]
     public float speed = 10f;
+    public float health = 1f;
 
     protected BoundsCheck bndCheck;
     
@@ -14,6 +15,16 @@ public class Enemy : MonoBehaviour
     {
         bndCheck = GetComponent<BoundsCheck>();
     }
+
+    protected virtual void Start()
+    {
+        float _rand = Random.value;
+        if (_rand < 0.5f)
+            health = 1f;
+        else
+            health = 3f;
+    }
+
     public Vector3 Pos
     {
         get { return (transform.position);  }
@@ -41,14 +52,27 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject otherGO = collision.gameObject;
-        if (otherGO.tag == "ProjectileHero") //destroy enemy and projecitle when they collide
+        switch(otherGO.tag)
         {
-            Destroy(otherGO);
-            Destroy(gameObject);
-        }
-        else
-        {
-            print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+            case "ProjectileHero":
+                Projectile p = otherGO.GetComponent<Projectile>();
+                if (!bndCheck.isOnScreen) //if the enemy is off screen, no damage is done
+                {
+                    Destroy(otherGO);
+                    break;
+                }
+
+                health -= Main.GetWeaponDefinition(p.type).damageOnHit;//reduce enemy's health by the amount acquired from WEAP_DICT
+                if (health <= 0)
+                {
+                    Destroy(gameObject);
+                }
+                Destroy(otherGO);
+                break;
+
+            default:
+                print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+                break; 
         }
     }
 }
