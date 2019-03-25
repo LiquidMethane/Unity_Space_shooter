@@ -71,6 +71,7 @@ public class Enemy : MonoBehaviour
                 }
 
                 health -= Main.GetWeaponDefinition(p.type).damageOnHit;//reduce enemy's health by the amount acquired from WEAP_DICT
+
                 if (health == 0)
                 {
                     Destroy(gameObject);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -801,7 +801,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 286782629}
   highScoreText: {fileID: 680844041}
-  eraseHighScoreOnStart: 0
   HIGH_SCORE: 0
   _score: 0
 --- !u!1 &590865542
@@ -1456,7 +1455,7 @@ PrefabInstance:
     - target: {fileID: 7945222080362147208, guid: 3a507d2a1065e9a449a1d36c861de52c,
         type: 3}
       propertyPath: _type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a507d2a1065e9a449a1d36c861de52c, type: 3}

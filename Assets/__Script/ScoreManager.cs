@@ -10,8 +10,6 @@ public class ScoreManager : MonoBehaviour
     [Header("Set in Inspector")]
     public Text scoreText;
     public Text highScoreText;
-    [SerializeField]
-    private bool eraseHighScoreOnStart = false; 
 
     [Header("Set Dynamically")]
     public int HIGH_SCORE = 0;
@@ -35,8 +33,6 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (eraseHighScoreOnStart) //reset highscore on start if true
-            PlayerPrefs.DeleteKey("HighestScore");
         LoadHighScore();
         DisplayScore();
     }
@@ -56,9 +52,10 @@ public class ScoreManager : MonoBehaviour
     {
         if (_score > HIGH_SCORE)
         {
+            HIGH_SCORE = _score;
+            SaveHighScore();
             scoreText.color = Color.yellow;
             highScoreText.color = Color.yellow;
-            HIGH_SCORE = _score;
         }
         scoreText.text = _score.ToString();
         highScoreText.text = "Highest Score: " + HIGH_SCORE.ToString();
