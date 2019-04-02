@@ -17,20 +17,10 @@ public class Enemy : MonoBehaviour
         bndCheck = GetComponent<BoundsCheck>();
     }
 
-    protected virtual void Start() //determine health and score for every enemy upon spawning
+    void Start() //determine health and score for every enemy upon spawning
     {
-        float _rand = Random.value;
-        if (_rand < 0.5f)
-        {
-            health = 1f;
-            score = 1;
-        }
-            
-        else
-        { 
-            health = 3f;
-            score = 3;
-        }
+        health = 1f;
+        score = 1;
     }
 
     public Vector3 Pos

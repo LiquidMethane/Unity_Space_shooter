@@ -18,9 +18,10 @@ public class Enemy_1 : Enemy
 
     }
     
-    protected override void Start()
+    void Start()
     {
-        base.Start();
+        health = 2f;
+        score = 5;
         _random = Random.value; //determine the random value upon the creation of Enemy
     }
 
