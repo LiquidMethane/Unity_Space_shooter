@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 352438607788898362}
   - component: {fileID: 352438607788898361}
   - component: {fileID: 6324291004296842751}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ProjectileHero
   m_TagString: ProjectileHero
   m_Icon: {fileID: 0}
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f031aeeb2de7ff4db4266175e93c317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
+  _type: 0
 --- !u!114 &6324291004296842751
 MonoBehaviour:
   m_ObjectHideFlags: 0

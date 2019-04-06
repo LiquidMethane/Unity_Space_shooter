@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2545460289149921072}
   - component: {fileID: 2545460289149921073}
   - component: {fileID: 2545460289149921074}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 2545460289768628511}
   - component: {fileID: 2545460289768628504}
   - component: {fileID: 2545460289768628505}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 2545460290122406883}
   - component: {fileID: 2545460290122406892}
   - component: {fileID: 2545460290122406893}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 2545460290912168845}
   - component: {fileID: 2545460290912168846}
   - component: {fileID: 2545460290912168847}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 2431079499173736495}
   - component: {fileID: 6713230070823233982}
   - component: {fileID: 8802039012226193532}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Enemy_2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -452,8 +452,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  health: 1
-  score: 1
+  health: 4
+  score: 10
+  powerUpDropChance: 0.4
+  fireRate: 0
+  bulletVelocity: 0
+  projectilePrefab: {fileID: 0}
   radius: 0.5
   rotationSpeed: 3
 --- !u!135 &8802039012226193532

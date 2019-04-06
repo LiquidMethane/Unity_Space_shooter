@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2352627737026617543}
   - component: {fileID: 5718681471510242511}
   - component: {fileID: 5619767344883406848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 336063207623928505}
   - component: {fileID: 1973270641244525992}
   - component: {fileID: 5371068608596766971}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2992710221172570106}
   - component: {fileID: 7945222080362147208}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,3 +199,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb9f06daa051ac44943020dc6a2b9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
+  def:
+    type: 0
+    letter: 
+    color: {r: 1, g: 1, b: 1, a: 1}
+    projectilePrefab: {fileID: 0}
+    allyPrefab: {fileID: 0}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 0
+    continuousDamage: 0
+    delayBetweenShots: 0
+    activateAfterEnemyKill: 0
+    velocity: 20
+  collar: {fileID: 0}
+  lastShotTime: 0

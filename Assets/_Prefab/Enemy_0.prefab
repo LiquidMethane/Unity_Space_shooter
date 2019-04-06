@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 86089306138863170}
   - component: {fileID: 86089306138863171}
   - component: {fileID: 86089306138863168}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ SphereCollider:
   m_GameObject: {fileID: 86089306138863174}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -103,7 +103,10 @@ GameObject:
   - component: {fileID: 86089306357328696}
   - component: {fileID: 824530315074697259}
   - component: {fileID: 5790479360777257295}
-  m_Layer: 9
+  - component: {fileID: 3510084032960736471}
+  - component: {fileID: 6653362439762112473}
+  - component: {fileID: 4124475348138201589}
+  m_Layer: 10
   m_Name: Enemy_0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -178,6 +181,135 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  health: 1
+  score: 1
+  powerUpDropChance: 0.15
+  fireRate: 0.3
+  bulletVelocity: 20
+  projectilePrefab: {fileID: 352438607788898360, guid: 328aaff7852d97949a75888874a1d8d3,
+    type: 3}
+--- !u!65 &3510084032960736471
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86089306357328702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0160732, y: 1.7719574, z: 1}
+  m_Center: {x: 0.0000005722046, y: 0.12996979, z: 0}
+--- !u!65 &6653362439762112473
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86089306357328702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.2414674, z: 1}
+  m_Center: {x: 0, y: -1.3792664, z: 0}
+--- !u!82 &4124475348138201589
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86089306357328702}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &86089307050492256
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +322,7 @@ GameObject:
   - component: {fileID: 86089307050492252}
   - component: {fileID: 86089307050492253}
   - component: {fileID: 86089307050492258}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +397,7 @@ SphereCollider:
   m_GameObject: {fileID: 86089307050492256}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -281,7 +413,7 @@ GameObject:
   - component: {fileID: 86089307186536180}
   - component: {fileID: 86089307186536181}
   - component: {fileID: 86089307186536186}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +488,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 86089307186536184}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -373,7 +505,7 @@ GameObject:
   - component: {fileID: 86089307244716202}
   - component: {fileID: 86089307244716203}
   - component: {fileID: 86089307244716200}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Booster_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +581,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 86089307244716206}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -466,7 +598,7 @@ GameObject:
   - component: {fileID: 86089307359362503}
   - component: {fileID: 86089307359362500}
   - component: {fileID: 86089307359362501}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Fuselage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +674,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 86089307359362507}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -559,7 +691,7 @@ GameObject:
   - component: {fileID: 86089307365581032}
   - component: {fileID: 86089307365581033}
   - component: {fileID: 86089307365581038}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +766,7 @@ SphereCollider:
   m_GameObject: {fileID: 86089307365581036}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -650,7 +782,7 @@ GameObject:
   - component: {fileID: 86089307576305584}
   - component: {fileID: 86089307576305585}
   - component: {fileID: 86089307576305590}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Booster_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +858,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 86089307576305588}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1

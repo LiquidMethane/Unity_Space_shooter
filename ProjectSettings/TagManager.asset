@@ -7,6 +7,11 @@ TagManager:
   - Hero
   - Enemy
   - ProjectileHero
+  - PowerUp
+  - ProjectileAlly
+  - ProjectileEnemy
+  - EnemyBoss
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -17,11 +22,11 @@ TagManager:
   - 
   - 
   - Hero
+  - EnemyBoss
   - Enemy
   - ProjectileHero
-  - 
-  - 
-  - 
+  - ProjectileEnemy
+  - PowerUp
   - 
   - 
   - 

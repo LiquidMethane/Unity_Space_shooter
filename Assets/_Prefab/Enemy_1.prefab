@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8984511494479740266}
   - component: {fileID: 8984511494479740261}
   - component: {fileID: 8984511494479740260}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 2946307471226505045}
   - component: {fileID: 8075915004161661642}
   - component: {fileID: 4471939089804244739}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Enemy_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -178,8 +178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  health: 1
-  score: 1
+  health: 2
+  score: 5
+  powerUpDropChance: 0.25
+  fireRate: 0.25
+  bulletVelocity: 20
+  projectilePrefab: {fileID: 352438607788898360, guid: 328aaff7852d97949a75888874a1d8d3,
+    type: 3}
 --- !u!65 &4471939089804244739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -205,7 +210,7 @@ GameObject:
   - component: {fileID: 8984511494723623037}
   - component: {fileID: 8984511494723623036}
   - component: {fileID: 8984511494723623039}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +301,7 @@ GameObject:
   - component: {fileID: 8984511495061423291}
   - component: {fileID: 8984511495061423290}
   - component: {fileID: 8984511495061423285}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
