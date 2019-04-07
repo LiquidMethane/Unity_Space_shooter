@@ -12,6 +12,7 @@ TagManager:
   - ProjectileEnemy
   - EnemyBoss
   - Boss
+  - Ally
   layers:
   - Default
   - TransparentFX

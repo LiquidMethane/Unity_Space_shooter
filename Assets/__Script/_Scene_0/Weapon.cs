@@ -15,7 +15,6 @@ public class Weapon : MonoBehaviour
 
     private Renderer _collarRend;
     private WeaponType _lastWeapon;
-    private AudioSource _audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +35,6 @@ public class Weapon : MonoBehaviour
         {
             rootGO.GetComponent<Hero>().fireDelegate += Fire;
         }
-        _audioSource = Main.Singleton.audioSource;
     }
 
     public WeaponType type
@@ -60,7 +58,7 @@ public class Weapon : MonoBehaviour
         if (Time.time - lastShotTime < def.delayBetweenShots) return; //return if fire delay is not met
         if (type == WeaponType.Ally) //return if enemykill amount is not met
         {
-            if (def.activateAfterEnemyKill > Hero.Ship.EnemyKill)
+            if (def.activateAfterEnemyKill > Hero.Ship.enemyKill)
                 return;
         }
         Projectile p;
@@ -73,12 +71,12 @@ public class Weapon : MonoBehaviour
         switch (type)
         {
             case WeaponType.simple:
-                _audioSource.PlayOneShot(Main.Singleton.standardWeapon, Random.Range(0.5f, 1f));
+                AudioControl.AC.PlayOneShot("standardWeapon", 0.5f, 1f);
                 p = MakeProjectile();
                 p.rigid.velocity = vel;
                 break;
             case WeaponType.blaster:
-                _audioSource.PlayOneShot(Main.Singleton.blasterWeapon, Random.Range(0.5f, 1f));
+                AudioControl.AC.PlayOneShot("blasterWeapon", 0.5f, 1f);
                 p = MakeProjectile(); //middle projectile
                 p.rigid.velocity = vel;
                 p = MakeProjectile(); //right projectile
@@ -89,15 +87,15 @@ public class Weapon : MonoBehaviour
                 p.rigid.velocity = p.transform.rotation * vel;
                 break;
             case WeaponType.Ally:
-                _audioSource.PlayOneShot(Main.Singleton.machineGun, 0.3f);
+                AudioControl.AC.PlayOneShot("machineGun", 0.3f, 0.3f);
                 SummonAlly();
                 break;
         }
     }
 
-    public void SummonAlly()
+    public void SummonAlly() //summons five Ally ships
     {
-        Hero.Ship.EnemyKill = 0;
+        Hero.Ship.enemyKill = 0;
         GameObject allyGO;
         Vector3 offset = new Vector3(6, 0, 0);
         for (int i = 0; i < 5; i++)

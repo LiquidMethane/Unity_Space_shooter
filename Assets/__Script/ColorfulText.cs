@@ -9,7 +9,7 @@ public class ColorfulText : MonoBehaviour
     public Text text;
 
     int _index = 0;
-    Color[] colors = { Color.red, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta };
+    static Color[] colors = { Color.red, new Color(1f, .6471f, 0f), Color.yellow, Color.green, Color.cyan, Color.blue, new Color(0.75f, 0, 0.75f) }; //color array for looping through colors
 
 
     void Start()
@@ -18,7 +18,7 @@ public class ColorfulText : MonoBehaviour
         Invoke("ColorChange", 0.5f);
     }
 
-    void ColorChange()
+    void ColorChange() //loop through colors 
     {
         text.color = colors[_index++];
         if (_index == colors.Length)

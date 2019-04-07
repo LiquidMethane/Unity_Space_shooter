@@ -17,12 +17,11 @@ public class Enemy : MonoBehaviour
 
     protected BoundsCheck bndCheck;
     private bool acceptDamage = true;
-    private AudioSource _audioSource;
+
 
     private void Awake()
     {
         bndCheck = GetComponent<BoundsCheck>();
-        _audioSource = Main.Singleton.audioSource;
     }
 
     void Start() //determine health and score for every enemy upon spawning
@@ -70,31 +69,29 @@ public class Enemy : MonoBehaviour
                     break;
                 }
 
-                health -= Main.GetWeaponDefinition(p.type).damageOnHit;//reduce enemy's health by the amount acquired from WEAP_DICT
-                if (tag == "ProjectileAlly")
-                    print(Main.GetWeaponDefinition(p.type).damageOnHit);
+                health -= Main.GetWeaponDefinition(p.type).damageOnHit; //reduce enemy's health by the amount acquired from WEAP_DICT
 
-                if (acceptDamage & health <= 0)
+                if (acceptDamage && health <= 0) 
                 {
                     acceptDamage = false;
                     Main.Singleton.ShipDestroyed(this);
                     Destroy(gameObject);
-                    if (otherGO.tag == "ProjectileHero")
+                    if (otherGO.tag == "ProjectileHero") //if damage is dealt by hero ship, hero enemykill counter increments
                     {
-                        Hero.Ship.EnemyKill++;
-                        if (Hero.Ship.EnemyKill == Main.GetWeaponDefinition(WeaponType.Ally).activateAfterEnemyKill)
-                            _audioSource.PlayOneShot(Main.Singleton.reload);
+                        Hero.Ship.enemyKill++;
+                        if (Hero.Ship.enemyKill == Main.GetWeaponDefinition(WeaponType.Ally).activateAfterEnemyKill) //if Ally Weapon is ready, play reload sound
+                            AudioControl.AC.PlayOneShot("reload");
                     }
                         
                     ScoreManager.Singleton.Score += score;
                     ScoreManager.Singleton.DisplayScore();
 
-                    _audioSource.PlayOneShot(Main.Singleton.blast, Random.Range(0.5f, 1f));
+                    AudioControl.AC.PlayOneShot("blast", 0.5f, 1f);
                 }
-                else
+                else //if enemy is still alive
                 {
                     if (otherGO.tag == "ProjectileHero")
-                        _audioSource.PlayOneShot(Main.Singleton.hit, Random.Range(0.4f, 0.6f));
+                        AudioControl.AC.PlayOneShot("hit", 0.4f, 0.6f);
                 }
                 Destroy(otherGO);
                 break;
@@ -107,12 +104,12 @@ public class Enemy : MonoBehaviour
 
     protected void Fire()
     {
-        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
-        projGO.GetComponent<Renderer>().material.color = Color.yellow;
-        projGO.tag = "ProjectileEnemy";
-        projGO.layer = LayerMask.NameToLayer("ProjectileEnemy"); ;
-        projGO.transform.position = transform.position;
-        projGO.GetComponent<Rigidbody>().velocity = Vector3.down * bulletVelocity;
+        GameObject projGO = Instantiate<GameObject>(projectilePrefab); //instantiate projectile
+        projGO.GetComponent<Renderer>().material.color = Color.yellow; //change color to yellow
+        projGO.tag = "ProjectileEnemy";                                //set tag to projectile enemy
+        projGO.layer = LayerMask.NameToLayer("ProjectileEnemy");       //set layer to projectile enemy
+        projGO.transform.position = transform.position;                //set position to enemy's position
+        projGO.GetComponent<Rigidbody>().velocity = Vector3.down * bulletVelocity; //move projectile downwards
         Invoke("Fire", 1 / fireRate);
     }
 }

@@ -35,36 +35,20 @@ public class Projectile : MonoBehaviour
         {
             case "ProjectileHero":
             case "ProjectileAlly":
-                if (_bndCheck.offUp || _bndCheck.offRight || _bndCheck.offLeft) //destroy if gone off screen from top
+                if (_bndCheck.offUp || _bndCheck.offRight || _bndCheck.offLeft) //destroy if gone off screen from top if it's from hero ship or ally ship
                 {
                     Destroy(gameObject);
                 }
                 break;
 
             case "ProjectileEnemy":
-                if (_bndCheck.offDown || _bndCheck.offRight || _bndCheck.offLeft) 
+                if (_bndCheck.offDown || _bndCheck.offRight || _bndCheck.offLeft) //destroy if gone off screen from bottom if it's from enemy
                 {
                     Destroy(gameObject);
                 }
                 break;
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        GameObject go = collision.gameObject;
-        if ((gameObject.tag == "ProjectileHero" || gameObject.tag == "ProjectileAlly") && go.tag == "ProjectileEnemy")
-        {
-            Destroy(gameObject);
-            Destroy(go);
-        }
-        else if ((go.tag == "ProjectileHero" || go.tag == "ProjectileAlly") && gameObject.tag == "ProjectileEnemy")
-        {
-            Destroy(gameObject);
-            Destroy(go);
-        }
-    }
-
 
     public void SetType(WeaponType eType) //set _type and color to match the weapon definition
     {

@@ -84,7 +84,7 @@ public class PowerUp : MonoBehaviour
 
     public void AbsorbedBy(GameObject target) //this function is called by Hero class when PowerUp is collected
     {
-        Main.Singleton.audioSource.PlayOneShot(Main.Singleton.levelUp);
+        AudioControl.AC.PlayOneShot("levelUp");
         Destroy(this.gameObject);
     }
 }

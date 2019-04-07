@@ -61,7 +61,7 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.color = Color.white;
         highScoreText.color = Color.white;
-        if (_score > HIGH_SCORE)
+        if (_score > HIGH_SCORE) //if current score exceeds high score, save new high score and make texts yellow
         {
             HIGH_SCORE = _score;
             SaveHighScore();

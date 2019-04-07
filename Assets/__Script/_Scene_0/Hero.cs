@@ -24,22 +24,11 @@ public class Hero : MonoBehaviour
 
     public WeaponFireDelegate fireDelegate;
     private GameObject _rageIndicator;
-    private AudioSource _audioSource;
-    private bool win = false;
 
-    public bool Win
-    {
-        get { return win; }
-        set { win = value; }
-    }
+    public bool Win { get; set; } = false; //auto property for Win (suggested by Visual Studio IDE)
 
-    float _enemyKill = 0;
-
-    public float EnemyKill
-    {
-        get{ return _enemyKill; }
-        set { _enemyKill = value; }
-    }
+    [HideInInspector]
+    public float enemyKill  = 0; //auto property for EnemyKill (suggested by Visual Studio IDE)
 
     private void Awake() // set the ship singleton
     {
@@ -49,7 +38,6 @@ public class Hero : MonoBehaviour
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S");
 
         _rageIndicator = Instantiate(rageIndicatorPrefab);
-        _audioSource = Main.Singleton.audioSource;
     }
 
     // Update is called once per frame
@@ -87,14 +75,17 @@ public class Hero : MonoBehaviour
             ShieldLevel--;
             if (_shieldLevel >= 0)
             {
-                _audioSource.PlayOneShot(Main.Singleton.shieldBlop, 1f);
+                AudioControl.AC.PlayOneShot("shieldBlop", 1f, 1f);
             }
-                
+            if (_go.tag == "Enemy")
+            {
+                AudioControl.AC.PlayOneShot("blast", 0.5f, 1f);
+            }
             Destroy(_go);
         }
         else if (_go.tag == "EnemyBoss")
         {
-            GameOver();
+            ShieldLevel = -1;
         }
         else if (_go.tag == "PowerUp") //if triggered by powerup
         {
@@ -152,7 +143,7 @@ public class Hero : MonoBehaviour
                     if (wd.damageOnHit <= 3)
                         wd.damageOnHit += wd.damageOnHit * 0.25f;
                     else
-                        wd.delayBetweenShots -= wd.delayBetweenShots * 0.05f;
+                        wd.delayBetweenShots -= wd.delayBetweenShots * 0.1f;
                 }
                 break;
 
@@ -160,21 +151,23 @@ public class Hero : MonoBehaviour
         pu.AbsorbedBy(gameObject);
     }
 
-    public void GameOver()
+    public void GameOver() //when gameover, BGM stops, failure sound is played, heroship and rage indicator are destroyed, high score is saved and game restarts in delay seconds
     {
-        _audioSource.Stop();
-        _audioSource.PlayOneShot(Main.Singleton.failure, 1f);
+        Main.Singleton._EnemyBossMode = false;
+        AudioControl.AC.Stop();
+        AudioControl.AC.PlayOneShot("failure", 1f, 1f);
         Destroy(gameObject);
         Destroy(_rageIndicator);
+        Main.Singleton.ClearScreen();
         ScoreManager.Singleton.SaveHighScore();
         Main.Singleton.DelayedRestart(gameRestartDelay);
     }
 
-    public void Victory()
+    public void Victory() //when victory, set Win to true, BGM stops, victory sound is played, high score is saved and startScreen is loaded in delay seconds
     {
-        win = true;
-        _audioSource.Stop();
-        _audioSource.PlayOneShot(Main.Singleton.victory, 1f);
+        Win = true;
+        AudioControl.AC.Stop();
+        AudioControl.AC.PlayOneShot("victory", 1f, 1f);
         ScoreManager.Singleton.SaveHighScore();
         Main.Singleton.DelayedTransitionStartScreen(gameRestartDelay);
     }

@@ -34,31 +34,23 @@ public class Main : MonoBehaviour
 
     [Header("Set in Inspector")]
     public GameObject[] prefabEnemies;
-    public float enemySpawnRateFactor = 90f;
-    public float enemySpawnRateAfterBoss = 0.5f;
+    public float enemySpawnRateFactor = 90f; //used to determine the function: spawn interval = 2*e^2 / (time^2 + e^2)
+    public float enemySpawnRateAfterBoss = 0.5f; //used to restrict enemy spawn rate
     public float enemyDefaultPadding = 1.5f;
+    public float playTime = 60f; //playTime until final boss arrives
     public WeaponDefinition[] weaponDefinitions;
     public GameObject powerUpPrefab;
     public GameObject enemyBossPrefab;
-    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.simple, WeaponType.blaster, WeaponType.shield };
-    public float playTime = 0f; //playTime until final boss arrives
-    public AudioSource audioSource;
-    public AudioClip blast;
-    public AudioClip hit;
-    public AudioClip machineGun;
-    public AudioClip standardWeapon;
-    public AudioClip blasterWeapon;
-    public AudioClip shieldBlop;
-    public AudioClip failure;
-    public AudioClip levelUp;
-    public AudioClip reload;
-    public AudioClip BGMBoss;
-    public AudioClip victory;
-
+    public WeaponType[] powerUpFrequency = new WeaponType[] { WeaponType.simple, WeaponType.simple, WeaponType.simple, //powerUp drop rate ratio is 3:3:2
+                                                              WeaponType.blaster, WeaponType.blaster,WeaponType.blaster,
+                                                              WeaponType.shield, WeaponType.shield };
 
 
     float _birthTime; //records start time of the game
-    bool _EnemyBossMode = true; //set enemy boss mode to false
+
+    [HideInInspector]
+    public bool _EnemyBossMode = true; //set enemy boss mode to false
+
     bool _EnemyBossSpawned = false;
 
     BoundsCheck _bndCheck;
@@ -120,42 +112,48 @@ public class Main : MonoBehaviour
     void Update()
     {
 
-        if (Time.time - _birthTime > playTime && _EnemyBossMode)
+        if (Time.time - _birthTime > playTime && _EnemyBossMode) //check if boss fight condition has met
         {
-            Instantiate(enemyBossPrefab);
-            audioSource.clip = BGMBoss;
-            audioSource.Play();
+            Instantiate(enemyBossPrefab); //spawn boss and play boss background music
+            AudioControl.AC.setAudioSourceClip("BGMBoss");
+            AudioControl.AC.Play();
             _EnemyBossMode = false;
             _EnemyBossSpawned = true;
         }
 
-        if (Hero.Ship.Win)
+        if (Hero.Ship.Win) //clear screen if player wins the game
         {
             ClearScreen();
         }
     }
 
-    public void ClearScreen()
+    public void ClearScreen() //finds basically everything on screen and destroy them
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject go in enemies)
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject go in gameObjects)
             Destroy(go);
-        enemies = GameObject.FindGameObjectsWithTag("ProjectileEnemy");
-        foreach (GameObject go in enemies)
+        gameObjects = GameObject.FindGameObjectsWithTag("ProjectileEnemy");
+        foreach (GameObject go in gameObjects)
             Destroy(go);
-        enemies = GameObject.FindGameObjectsWithTag("PowerUp");
-        foreach (GameObject go in enemies)
+        gameObjects = GameObject.FindGameObjectsWithTag("PowerUp");
+        foreach (GameObject go in gameObjects)
+            Destroy(go);
+        gameObjects = GameObject.FindGameObjectsWithTag("ProjectileAlly");
+        foreach (GameObject go in gameObjects)
+            Destroy(go);
+        gameObjects = GameObject.FindGameObjectsWithTag("Ally");
+        foreach (GameObject go in gameObjects)
             Destroy(go);
     }
 
-    public void DelayedTransitionStartScreen(float delay)
+    public void DelayedTransitionStartScreen(float delay) 
     {
-        Invoke("StartScreen", delay);
+        Invoke("StartScreen", delay); //invoke StartScrren method in delay sec
     }
 
     public void StartScreen()
     {
-        SceneManager.LoadScene("_Scene_Start");
+        SceneManager.LoadScene("_Scene_Start"); //load _Scene_Start to go to start screen of the game
     }
 
     public void DelayedRestart(float delay)

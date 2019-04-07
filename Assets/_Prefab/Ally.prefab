@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 5848806554908773277}
   m_Layer: 8
   m_Name: Ally
-  m_TagString: Hero
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3dd0b473b7de5042b9520317d6ee248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 50
   speed: 20
   projectilePrefab: {fileID: 352438607788898360, guid: 328aaff7852d97949a75888874a1d8d3,
     type: 3}
