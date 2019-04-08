@@ -21,7 +21,6 @@ public class WeaponDefinition
     public GameObject allyPrefab; //prefab for ally ship
     public Color projectileColor = Color.white;
     public float damageOnHit = 0; //amount of damage
-    public float continuousDamage = 0; //damage per sec
     public float delayBetweenShots = 0;
     public int activateAfterEnemyKill = 0; //weapon is activated after certain enemy kills
     public float velocity = 20; //speed of projectiles
